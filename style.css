@@ -1,0 +1,51 @@
+/* Estilos para el encabezado */
+header {
+    background-color: #e70a0a;
+    color: rgb(141, 19, 19);
+    text-align: center;
+    padding: 10px;
+}
+
+/* Estilos para la navegación */
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+nav ul li {
+    display: inline;
+    margin-right: 20px;
+}
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+nav ul li a:hover {
+    color: #ffc107; /* Cambia el color al pasar el ratón */
+}
+
+/* Estilos para el contenido principal */
+main {
+    margin: 20px;
+}
+
+/* Estilos para las secciones */
+section {
+    margin-bottom: 20px;
+}
+section h2 {
+    color: #ce1919; /* Color del título de la sección */
+}
+
+/* Estilos para el pie de página */
+footer {
+    background-color: #413f3f;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+}
