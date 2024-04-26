@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulador de Campo Eléctrico</title>
+    <style>
+
+body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-image: url('background.gif');
+            background-size: cover;
+            background-repeat: no-repeat;
+            position: relative;
+        }
+
+        #canvas {
+            border: 1px solid black;
+        }
+
+        #explanation {
+            position: absolute;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: white;
+            text-align: center;
+            font-size: 24px;
+            z-index: 1;
+        }
+
+    </style>
+</head>
+<body>
+
+
+    <canvas id="canvas" width="800" height="600"></canvas>
+    <script>
+        const canvas = document.getElementById('canvas');
+        const ctx = canvas.getContext('2d');
+
+        const chargeRadius = 20;
+        const chargeColor = ['#FF0000', '#FF0000']; // Red charges
+        const chargeValue = [1, 1]; // Positive charges
+        const centerForce = 0.001; // Strength of the force towards the center
+        const mouseForce = 0.001; // Strength of the force towards mouse
+
+        let charges = [];
+        let mouseX = canvas.width / 2, mouseY = canvas.height / 2;
+
+        // Function to calculate electric field vector at a point
+        function calculateField(x, y) {
+            let fieldX = 0, fieldY = 0;
+            charges.forEach(charge => {
+                const dx = x - charge.x;
+                const dy = y - charge.y;
+                const distanceSquared = dx * dx + dy * dy;
+                const force = chargeValue[charge.type] / distanceSquared;
+                const angle = Math.atan2(dy, dx);
+                fieldX += force * Math.cos(angle);
+                fieldY += force * Math.sin(angle);
+            });
+            return { x: fieldX, y: fieldY };
+        }
+
+        // Function to draw charges and electric field lines
+        function draw() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            // Draw charges
+            charges.forEach(charge => {
+                ctx.beginPath();
+                ctx.arc(charge.x, charge.y, chargeRadius, 0, Math.PI * 2);
+                ctx.fillStyle = chargeColor[charge.type];
+                ctx.fill();
+            });
+
+            // Draw electric field lines
+            for (let x = 0; x < canvas.width; x += 20) {
+                for (let y = 0; y < canvas.height; y += 20) {
+                    const field = calculateField(x, y);
+                    const length = Math.sqrt(field.x * field.x + field.y * field.y);
+                    if (length > 0) {
+                        const normalizedX = field.x / length;
+                        const normalizedY = field.y / length;
+                        ctx.beginPath();
+                        ctx.moveTo(x, y);
+                        ctx.lineTo(x + normalizedX * 10, y + normalizedY * 10);
+                        ctx.strokeStyle = 'rgba(0, 0, 0, 0.1)';
+                        ctx.stroke();
+                    }
+                }
+            }
+        }
+
+        // Function to update charges position
+        function update() {
+            charges.forEach(charge => {
+                const forceX = chargeValue[charge.type] * charge.accelerationX;
+                const forceY = chargeValue[charge.type] * charge.accelerationY;
+
+                // Force towards the center
+                const centerForceX = (canvas.width / 2 - charge.x) * centerForce;
+                const centerForceY = (canvas.height / 2 - charge.y) * centerForce;
+
+                // Force towards mouse
+                const mouseForceX = (mouseX - charge.x) * mouseForce;
+                const mouseForceY = (mouseY - charge.y) * mouseForce;
+
+                charge.velocityX += forceX + centerForceX + mouseForceX;
+                charge.velocityY += forceY + centerForceY + mouseForceY;
+                charge.x += charge.velocityX;
+                charge.y += charge.velocityY;
+            });
+        }
+
+        // Function to initialize the simulation
+        function init() {
+            for (let i = 0; i < 2; i++) {
+                charges.push({
+                    x: Math.random() * canvas.width,
+                    y: Math.random() * canvas.height,
+                    velocityX: 0,
+                    velocityY: 0,
+                    accelerationX: Math.random() * 0.2 - 0.1,
+                    accelerationY: Math.random() * 0.2 - 0.1,
+                    type: i
+                });
+            }
+        }
+
+        // Mouse move event handler to update mouse position
+        canvas.addEventListener('mousemove', (event) => {
+            mouseX = event.clientX - canvas.getBoundingClientRect().left;
+            mouseY = event.clientY - canvas.getBoundingClientRect().top;
+        });
+
+        // Initialization
+        init();
+        setInterval(() => {
+            update();
+            draw();
+        }, 1000 / 60);
+    </script>
+</body>
+</html>

@@ -5,74 +5,37 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>El campo Fotoeléctrico</title>
-    <style>
-        header {
-            background-color: #f50e0e;
-            color: white;
-            text-align: center;
-            padding: 10px;
-        }
-        footer {
-            background-color: #413f3f;
-            color: white;
-            text-align: center;
-            padding: 10px;
-            position: fixed;
-            width: 100%;
-            bottom: 0;
-        }
-        main section {
-            display: none; 
-        }
-        main section.active {
-            display: block; 
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
+
     <header>
         <h1>El campo Fotoeléctrico</h1>
         <nav>
             <ul>
-                <li><a href="#" onclick="showPage('formulario')">Formulario</a></li>
-                <li><a href="#" onclick="showPage('origen')">Origen e Historia</a></li>
-                <li><a href="#" onclick="showPage('conclusion')">Conclusión</a></li>
+                <li><a href="formulario.html">Formulario</a></li>
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="conclusion.html">Conclusión</a></li>
             </ul>
         </nav>
     </header>
 
     <main>
-        <section id="formulario">
-            <h2>Formulario</h2>
-            Para entender las fórmulas deberemos empezar por la fórmula fundamental.
-        </section>
-        
-        <section id="origen">
-            <h2>Origen e Historia</h2>
-            <p>
-                Surge en plena época de la física clásica en tiempos de Newton.
-            </p>
-        </section>
-        
-        <section id="conclusion">
-            <h2>Conclusión</h2>
-            El campo fotoeléctrico es un campo muy importante para entender la física clásica y para dar un punto de inflexión hacia la física moderna.
+
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/QBTgzYmkC_I?si=IeD1rsNrhKW8CM-P" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+        <section>
+            <h2>Origen e Historia del Campo Eléctrico</h2>
+            <p>El concepto de campo eléctrico tiene sus raíces en el trabajo de varios científicos a lo largo de la historia. Uno de los pioneros en el estudio de la electricidad fue el físico británico Michael Faraday, quien en el siglo XIX realizó importantes experimentos que sentaron las bases para entender la relación entre cargas eléctricas y campos eléctricos.</p>
+            <p>Otro científico crucial en el desarrollo del concepto de campo eléctrico fue el físico francés Charles-Augustin de Coulomb, quien en el siglo XVIII formuló la ley de Coulomb, que describe la fuerza electrostática entre dos cargas eléctricas puntuales.</p>
+            <p>A lo largo del tiempo, el concepto de campo eléctrico se ha refinado y ampliado gracias al trabajo de numerosos científicos, incluyendo a James Clerk Maxwell y Albert Einstein, entre otros.</p>
+            <p>Hoy en día, el campo eléctrico es una parte fundamental de la física y tiene aplicaciones en una amplia gama de campos, desde la electrónica hasta la medicina.</p>
         </section>
     </main>
 
     <footer>
         <p>Realizado por Joel Agra, el mejor del mundo mundial</p>
     </footer>
-
-    <script>
-        function showPage(pageId) {
-           
-            document.querySelectorAll('main section').forEach(section => {
-                section.classList.remove('active');
-            });
-    
-            document.getElementById(pageId).classList.add('active');
-        }
-    </script>
 </body>
 </html>

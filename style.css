@@ -1,9 +1,10 @@
 /* Estilos para el encabezado */
 header {
     background-color: #e70a0a;
-    color: rgb(141, 19, 19);
+    color: #ffffff; /* Blanco */
     text-align: center;
-    padding: 10px;
+    padding: 20px; /* Aumento del espacio interno */
+    margin: 0;
 }
 
 /* Estilos para la navegación */
@@ -14,16 +15,18 @@ nav ul {
     text-align: center;
 }
 nav ul li {
-    display: inline;
+    display: inline-block; /* Cambio a inline-block para mejor alineación */
     margin-right: 20px;
 }
 nav ul li a {
-    color: white;
+    color: #ffffff;
     text-decoration: none;
     font-weight: bold;
+    padding: 10px; /* Aumento del espacio alrededor del enlace */
+    transition: color 0.3s ease; /* Transición suave de color */
 }
 nav ul li a:hover {
-    color: #ffc107; /* Cambia el color al pasar el ratón */
+    color: #ffc107;
 }
 
 /* Estilos para el contenido principal */
@@ -33,19 +36,79 @@ main {
 
 /* Estilos para las secciones */
 section {
-    margin-bottom: 20px;
+    margin-bottom: 40px; /* Aumento del espacio entre secciones */
+    margin: 1em 10em 1em 10em;
 }
 section h2 {
-    color: #ce1919; /* Color del título de la sección */
+    color: #ce1919;
+    font-size: 24px; /* Aumento del tamaño del texto del título */
 }
 
 /* Estilos para el pie de página */
 footer {
     background-color: #413f3f;
-    color: white;
+    color: #ffffff;
     text-align: center;
-    padding: 10px;
-    position: fixed;
+    padding: 20px; /* Aumento del espacio interno */
     width: 100%;
     bottom: 0;
 }
+
+.sim {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow-y: hidden;
+}
+
+iframe {
+    width: 45vw; /* Ancho deseado del iframe */
+    height: 65vh; /* Altura deseada del iframe */
+    border: none; /* Elimina el borde del iframe */
+    overflow-y: hidden;
+
+}
+
+h1, h2, h3, h4, h5, h6{
+    text-align: center;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-weight: bolder;
+    font-size: 4em;
+}
+
+p{
+    text-align: center;
+    font-size: 1.25em;
+}
+
+body{
+    margin: 0;    
+    overflow-x: hidden;
+}
+
+.space{
+    height: 10vh;
+}
+
+/* Estilos para el iframe */
+iframe {
+    display: block;
+    margin: 0 auto; /* Centrar horizontalmente */
+    max-width: 100%;
+    width: 800px; /* Ancho deseado del video */
+    height: 450px; /* Altura deseada del video */
+    border: 5px solid #ccc; /* Borde gris */
+    border-radius: 10px; /* Bordes redondeados */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Sombra ligera */
+}
+
+/* Estilos adicionales si quieres hacerlo aún más bonito */
+iframe:hover {
+    border-color: #666; /* Cambia el color del borde al pasar el ratón sobre él */
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2); /* Sombra ligeramente más pronunciada al pasar el ratón sobre él */
+    transition: border-color 0.3s, box-shadow 0.3s; /* Agrega una transición suave al cambio de borde y sombra */
+}
+    
